@@ -1,3 +1,5 @@
+// compiler钩子 参考https://www.webpackjs.com/api/compiler-hooks/
+
 class myPlugin {
   constructor(){
     console.log("====初始化")

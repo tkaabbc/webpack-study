@@ -23,9 +23,13 @@ const complier = {
   run:  function () {
     this.initPlugin()
     this.hooks.initPlugin.call()
+    
+    // 入口文件单独处理
     let moduleFile = this.build(entry)
     const entryRpath = `.${entry.slice(baseDir.length)}`
     this.moduleFileMap[entryRpath] = moduleFile
+    
+    // FIXME： 原作者这里并没有实现递归 导致无法加载module4 有空要修一下
     this.resolveDependences(moduleFile)
     this.file(entryRpath, this.moduleFileMap)
     this.hooks.emit.call(this.compilation)
